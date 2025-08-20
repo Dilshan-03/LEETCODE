@@ -12,21 +12,22 @@ class Solution {
 public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
         unordered_map<int , int> mpp;
+        //Use map for efficient lookup . Just traverse the Linked list and delete the elements present in map 
         for(auto it : nums){
             mpp[it] = 1;
         }
 
         ListNode* dummy = new ListNode(-1 , head);
-        ListNode* temp = dummy;
-        while(temp->next != NULL){
-            int value = temp->next->val;
+        ListNode* current = dummy;
+        while(current->next != NULL){
+            int value = current->next->val;
             if(mpp.find(value) != mpp.end()){
-                ListNode* nextNode = temp->next;
-                temp->next = nextNode->next;
+                ListNode* nextNode = current->next;
+                current->next = nextNode->next;
                 //nextNode->next = NULL;
-               // delete nextNode;
+                //delete nextNode;
             }
-            else temp = temp->next;
+            else current = current->next;
         }
         return dummy->next;
     }
