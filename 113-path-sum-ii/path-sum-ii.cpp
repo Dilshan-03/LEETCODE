@@ -16,15 +16,8 @@ private:
     }
     void addValidPath(TreeNode* root , vector<int>& path , vector<vector<int>>& ans , int targetSum){
         if(root == NULL) return;
-        if(isLeaf(root)){
-            if(targetSum == root->val){
-                path.push_back(root->val);
-                ans.push_back(path);
-                path.pop_back();
-            }
-            return;
-        }
         path.push_back(root->val);
+        if(isLeaf(root) && targetSum == root->val)  ans.push_back(path);
         addValidPath(root->left , path , ans , targetSum - root->val);
         addValidPath(root->right , path , ans , targetSum - root->val);
         path.pop_back();
