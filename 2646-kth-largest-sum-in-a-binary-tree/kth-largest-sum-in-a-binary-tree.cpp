@@ -12,7 +12,7 @@
 class Solution {
 public:
     long long kthLargestLevelSum(TreeNode* root, int k) {
-        vector<long long> levelSum;
+        vector<long long> levelSum; // store the sum of each level in levelSum
         queue<TreeNode*> todo;
         todo.push(root);
         while(!todo.empty()){
@@ -27,6 +27,7 @@ public:
             }
             levelSum.push_back(sum);
         }
+        //sort them up and return the k th largest 
         sort(levelSum.begin() , levelSum.end());
         int n = levelSum.size();
         if(n - k < 0) return -1;
