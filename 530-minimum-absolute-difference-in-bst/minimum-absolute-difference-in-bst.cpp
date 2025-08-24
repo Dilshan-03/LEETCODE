@@ -21,6 +21,7 @@ private:
     }
 public:
     int getMinimumDifference(TreeNode* root) {
+        //Instead of storing and finding the minimum absolute difference , we are finding it on the flew using inorder without storing them in an array
         int prevVal = 1e9 , minVal = 1e9;
         inorderTraversal(root , prevVal , minVal);
         return minVal;
