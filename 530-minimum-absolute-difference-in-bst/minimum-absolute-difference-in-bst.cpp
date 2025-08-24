@@ -11,21 +11,19 @@
  */
 class Solution {
 private:
-    void inorderTraversal(TreeNode* root , vector<int>& inorder){
+    void inorderTraversal(TreeNode* root , int& prevVal , int& minVal){
         if(root == NULL) return;
-        inorderTraversal(root->left , inorder);
-        inorder.push_back(root->val);
-        inorderTraversal(root->right , inorder);
+        inorderTraversal(root->left , prevVal , minVal);
+        minVal = min(minVal , abs(root->val -  prevVal));
+        prevVal = root->val;
+        inorderTraversal(root->right , prevVal , minVal);
+       
     }
 public:
     int getMinimumDifference(TreeNode* root) {
-        vector<int> inorder;
-        inorderTraversal(root , inorder);
-        int n = inorder.size();
-        int mini = 1e9;
-        for(int i = 0 ; i < n - 1 ; i++){
-            mini = min(mini , abs(inorder[i + 1] - inorder[i]));
-        }
-        return mini;
+        int prevVal = 1e9 , minVal = 1e9;
+        inorderTraversal(root , prevVal , minVal);
+        return minVal;
+        
     }
 };
