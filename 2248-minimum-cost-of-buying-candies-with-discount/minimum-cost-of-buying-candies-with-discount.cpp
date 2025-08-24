@@ -5,6 +5,7 @@ public:
         int n = cost.size();
         int c = 0 , flag = 2;
         for(int i = n - 1 ; i >= 0 ; i--){
+            //after 2 buys , just take the candy as free 
             if(flag == 0){
                 flag = 2;
                 continue;
