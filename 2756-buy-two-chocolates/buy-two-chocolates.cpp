@@ -1,15 +1,8 @@
 class Solution {
 public:
     int buyChoco(vector<int>& prices, int money) {
-        /*
-
-        sort(prices.begin() , prices.end());
-        if(money - (prices[0] + prices[1]) >= 0) money -= (prices[0] + prices[1]);
-       return money;
-
-       */
-
        int n = prices.size();
+       //All you need to buy is 2 chocolates , so just find the 2 cheapest chocolates and check for appropriate conditions
        int cheap1 = INT_MAX , cheap2 = INT_MAX;
        for(int i = 0 ; i < n ; i++){
         if(prices[i] <= cheap1){
