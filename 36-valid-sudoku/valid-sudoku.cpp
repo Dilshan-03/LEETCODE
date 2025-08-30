@@ -14,9 +14,17 @@ public:
     bool isValidSudoku(vector<vector<char>>& board) {
         int n = board.size();
         int m = board[0].size();
+        vector<vector<int>> rowHash(9 , vector<int>(9 , 0));
+        vector<vector<int>> colHash(9 , vector<int>(9 , 0));
+        vector<vector<int>> boxHash(9 , vector<int>(9 , 0));
         for(int i = 0 ; i < n ; i++){
             for(int j = 0 ; j < m ; j++){
-                if(board[i][j] != '.' && checkIsAvailable(i , j , board[i][j] , board)) return false;
+                if(board[i][j] != '.'){
+                    int num = board[i][j] - '1';
+                    int boxInd = 3 * (i / 3) + j / 3;
+                    if(rowHash[i][num] || colHash[j][num] || boxHash[boxInd][num]) return false;
+                    rowHash[i][num] = colHash[j][num] = boxHash[boxInd][num] = true;
+                }
             }
         }
         return true;
