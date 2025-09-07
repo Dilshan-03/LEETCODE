@@ -9,7 +9,7 @@ public:
         int i = 1;
         while(n > 0){
             ans.push_back(i);
-            ans.push_back(-1 * i);
+            ans.push_back(-i);
             i += 1;
             n -= 2;
         }
