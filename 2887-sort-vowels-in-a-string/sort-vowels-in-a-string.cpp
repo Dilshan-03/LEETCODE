@@ -6,21 +6,29 @@ private:
     }
 public:
     string sortVowels(string s) {
-        string vowels;
+        //Counting sort solution
         int n = s.length();
-        for(int i = 0 ; i < n ; i++){
-            if(isVowel(s[i])) vowels.push_back(s[i]);
+        vector<int> freqVowels(128 , 0);
+        //Store the frequency of vowels
+        for(char ch : s){
+            if(isVowel(ch)) freqVowels[ch] += 1;
         }
-        sort(vowels.begin() , vowels.end());
+        string sortedVowels = "AEIOUaeiou";
         string t;
-        int vowelPtr = 0;
+        int ind = 0;
         for(int i = 0 ; i < n ; i++){
-           if(isVowel(s[i])){
-            t.push_back(vowels[vowelPtr]);
-            vowelPtr += 1;
-           }
-           else t.push_back(s[i]);
+            //If vowel is encountered , in that place , put the vowels according to sorted order
+            if(isVowel(s[i])){
+                while(ind < sortedVowels.size() && freqVowels[sortedVowels[ind]] == 0) ind += 1;
+                char ch = sortedVowels[ind];
+                freqVowels[sortedVowels[ind]] -= 1;
+                t.push_back(ch);
+            }
+            else{
+                t.push_back(s[i]);
+            }
         }
         return t;
+        
     }
 };
