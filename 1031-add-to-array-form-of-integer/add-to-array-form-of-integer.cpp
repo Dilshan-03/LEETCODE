@@ -11,19 +11,10 @@ public:
             res.push_back(sum % 10);
             carry =  sum / 10;
         }
-        while(k && carry){
-            int digit = k % 10;
-            int sum = digit + carry;
-            res.push_back(sum  % 10);
-            k = k / 10;
-            carry = sum / 10;
-        }
-        while(carry){
-            res.push_back(carry % 10);
-            carry = carry / 10;
-        }
+        k = k + carry;
         while(k){
-            res.push_back(k % 10);
+            int sum = k % 10;
+            res.push_back(sum);
             k = k / 10;
         }
         reverse(res.begin() , res.end());
