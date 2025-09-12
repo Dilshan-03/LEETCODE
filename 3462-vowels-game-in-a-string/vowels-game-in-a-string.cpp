@@ -10,6 +10,9 @@ public:
         for(int i = 0 ; i < n ; i++){
             if(isVowel(s[i])) cntVowels += 1;
         }
+   /*     
+        //Simulation if cntVowels is odd , then Alice wins , if Not take the substring with odd number of vowels , to make the string as odd , so that Bob won't wins
+        //If in bob's turn vowels cnt is even , the he wins , obviously . 
         bool turn = true; //Alice -> true , Bob -> False
         while(cntVowels){
             if(turn){
@@ -22,5 +25,10 @@ public:
             turn = !turn;
         }
         return false;
+
+    */
+
+        //Anyway , if the string contains atleast 1 vowel , the Alice can win
+        return (cntVowels > 0);
     }
 };
