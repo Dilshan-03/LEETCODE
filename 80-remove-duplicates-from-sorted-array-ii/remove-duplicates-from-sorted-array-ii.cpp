@@ -2,20 +2,17 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         int n = nums.size();
-        int i = 0 , k = 0;
-        while(i < n){
-            int j = i + 1;
-            while(j < n && nums[j] == nums[i]) j += 1;
-            if(j - i >= 2){
-                nums[k] = nums[k + 1] = nums[i];
-                k += 2;
+        if(n <= 2) return n;
+        int i = 2 ; // Next element to placed
+        int j = 2 ; // Pointer for each element's traversal
+        while(j < n){
+            //If the current element is not the same as element that appears before 1 element of i  , then it has to be in the i th position
+            if(nums[j] != nums[i - 2]){
+                nums[i] = nums[j];
+                i += 1;
             }
-            else{
-                nums[k] = nums[i];
-                k += 1;
-            }
-            i = j;
+            j += 1;
         }
-        return k;
+        return i;
     }
 };
