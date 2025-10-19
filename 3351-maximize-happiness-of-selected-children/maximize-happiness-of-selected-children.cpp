@@ -13,5 +13,7 @@ public:
             i -= 1;
         }
         return maxHappiness;
+        //TC : O(N log N)
+        //SC : O(1)
     }
 };
