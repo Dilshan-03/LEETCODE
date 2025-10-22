@@ -6,10 +6,12 @@ public:
         unordered_map<int , int> freqMap;
         while(r < n){
             freqMap[nums[r]] += 1;
+            //Whenever current window has elements greater than frequency of k , shrink it
             while(freqMap[nums[r]] > k){
                 freqMap[nums[l]] -= 1;
                 l += 1;
             }
+            //Calculate the length 
             len = max(len , r - l + 1);
             r += 1;
         }
