@@ -5,51 +5,21 @@ public:
         int i = n - 1 , j = m - 1;
         int carry = 0;
         string result = "";
-        while(i >= 0 && j >= 0){
-            int sum = (a[i] - '0') + (b[j] - '0') + carry;
-            if(sum == 0) result.push_back('0');
-            else if(sum == 1){
-                result.push_back('1');
-                carry = 0;
+        while(i >= 0 || j >= 0){
+            int sum = 0;
+            if(i >= 0){
+                sum += (a[i] - '0');
+                i -= 1;
             }
-            else{
-                if(sum == 2) result.push_back('0');
-                else result.push_back('1'); // sum == 2
-                carry = 1;
+            if(j >= 0){
+                sum += (b[j] - '0');
+                j -= 1;
             }
-            i -= 1;
-            j -= 1;
+            sum += carry;
+            //at max sum can take value as 3 , update the sum and carry field accordingly
+            result.push_back(sum % 2 + '0');
+            carry = sum / 2;
         }
-        while(i >= 0){
-            int sum = (a[i] - '0') + carry;
-            if(sum == 0) result.push_back('0');
-            else if(sum == 1){
-                result.push_back('1');
-                carry = 0;
-            }
-            //sum == 2
-            else{
-                result.push_back('0');
-                carry = 1;
-            }
-            i -= 1;
-        }
-
-        while(j >= 0){
-            int sum = (b[j] - '0') + carry;
-            if(sum == 0) result.push_back('0');
-            else if(sum == 1){
-                result.push_back('1');
-                carry = 0;
-            }
-            //sum == 2
-            else{
-                result.push_back('0');
-                carry = 1;
-            }
-            j -= 1;
-        }
-
         if(carry) result.push_back('1');
         reverse(result.begin() , result.end());
         return result;
