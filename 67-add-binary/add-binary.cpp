@@ -23,5 +23,8 @@ public:
         if(carry) result.push_back('1');
         reverse(result.begin() , result.end());
         return result;
+
+        //TC : O(N)
+        //SC : O(N)
     }
 };
