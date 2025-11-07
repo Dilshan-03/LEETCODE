@@ -1,0 +1,39 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* next;
+
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
+
+    Node(int _val, Node* _left, Node* _right, Node* _next)
+        : val(_val), left(_left), right(_right), next(_next) {}
+};
+*/
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if(!root) return root;
+        queue<Node*> todo;
+        todo.push(root);
+        while(!todo.empty()){
+            int n = todo.size();
+            Node* leftNode = NULL;
+            for(int i = 0 ; i < n ; i++){
+                Node* curNode = todo.front();
+                todo.pop();
+                if(leftNode)leftNode->next =  curNode;
+                if(curNode->left) todo.push(curNode->left);
+                if(curNode->right)todo.push(curNode->right);
+                leftNode = curNode;
+            }
+        }
+        return root;
+    }
+};
