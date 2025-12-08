@@ -5,10 +5,7 @@ public:
         for(int i = 1 ; i < n ; i++){
             for(int j = 1 ; j < n ; j++){
                 int res = (i * i + j * j);
-                if(sqrt(res) == ceil(sqrt(res)) && sqrt(res) <= n){
-                    cout<<i <<' '<<j<<' '<<res<<endl;
-                    cnt += 1;
-                }
+                if(sqrt(res) == ceil(sqrt(res)) && sqrt(res) <= n)  cnt += 1;
             }
         }
         return cnt;
