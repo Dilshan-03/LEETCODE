@@ -3,6 +3,7 @@ public:
     int countCoveredBuildings(int n, vector<vector<int>>& buildings) {
         vector<int> rowMax(n + 1 , 0) , rowMin(n + 1 , n + 1);
         vector<int> colMax(n + 1 , 0) , colMin(n + 1 , n + 1);
+        //Mark the extremes and check for validity
         for(auto it : buildings){
             int x = it[0];
             int y = it[1];
