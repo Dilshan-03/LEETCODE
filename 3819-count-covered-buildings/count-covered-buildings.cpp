@@ -8,6 +8,8 @@ public:
             int x = it[0];
             int y = it[1];
             //Let's say (i , j) , here j value is same for all same row elements and i value is same for all same column elements
+            //Row max -> leftMost point , Row min -> RightMost point
+            //Col Max -> BottomMost point , Col Min -> Topmost point
             rowMax[y] = max(rowMax[y] , x);
             rowMin[y] = min(rowMin[y] , x);
             colMax[x] = max(colMax[x] , y);
