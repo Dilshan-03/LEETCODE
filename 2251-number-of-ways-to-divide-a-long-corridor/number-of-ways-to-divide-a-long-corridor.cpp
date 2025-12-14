@@ -19,22 +19,23 @@ private:
 public:
     int numberOfWays(string corridor) {
         int n = corridor.length();
-        vector<vector<int>> dp(n + 1 , vector<int>(4 , 0));
         //return f(0 , 0 , n , corridor , dp);
-        dp[n][2] = 1;
+        vector<int> next(3 , 0);
+        next[2] = 1;
         for(int i = n - 1 ; i >= 0 ; i--){
+            vector<int> cur(3 , 0);
             for(int cnt = 2 ; cnt >= 0 ; cnt--){
               if(corridor[i] == 'S'){
-                if(cnt + 1 == 2) dp[i][cnt] = (dp[i + 1][0] + dp[i + 1][cnt + 1]) % mod;
-                else if(cnt + 1 < 2) dp[i][cnt] = dp[i + 1][cnt + 1] % mod;
-                else dp[i][cnt] = 0;
+                if(cnt + 1 == 2) cur[cnt] = (next[0] + next[cnt + 1]) % mod;
+                else if(cnt + 1 < 2) cur[cnt] = next[cnt + 1] % mod;
               }
               else{
-                if(cnt == 2) dp[i][cnt] = (dp[i + 1][0] + dp[i + 1][cnt]) % mod;
-                else  dp[i][cnt] = dp[i + 1][cnt] % mod;
+                if(cnt == 2) cur[cnt] = (next[0] + next[cnt]) % mod;
+                else  cur[cnt] = next[cnt] % mod;
                }
             }
+            next = cur;
         }
-    return dp[0][0];
+    return next[0];
     }
 };
