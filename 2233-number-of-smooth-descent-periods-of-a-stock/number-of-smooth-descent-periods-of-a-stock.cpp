@@ -12,5 +12,7 @@ public:
             if(r < n && prices[r] + 1 != prices[r - 1]) l = r;
         }
         return cnt;
+        //TC : O(N)
+        //SC : O(1)
     }
 };
