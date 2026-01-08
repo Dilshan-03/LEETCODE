@@ -17,7 +17,8 @@ public:
                 cnt += 1;
             }
         }
-
+        
+        //Check for every possible length palindromes
         for(int diff = 2 ; diff < n ; diff++){
             for(int start = 0 ; start < n - diff ; start++){
                 int end = start + diff;
