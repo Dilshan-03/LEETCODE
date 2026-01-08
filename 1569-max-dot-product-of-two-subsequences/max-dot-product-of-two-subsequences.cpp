@@ -11,15 +11,16 @@ private:
 public:
     int maxDotProduct(vector<int>& nums1, vector<int>& nums2) {
         int n = nums1.size() , m  = nums2.size();
-        vector<vector<int>> dp(n + 1  , vector<int>(m + 1 , -1));
-        return f( n  , m  , nums1 , nums2 , dp);
-        /*for(int i = 1 ; i < n ; i++){
-            for(int j = 1 ; j < m ; j++){
-                int take = (nums1[i - 1] * nums2[j - 1]) + max(0 , f(i - 1 , j - 1 , nums1 , nums2 , dp));
-                int skip1 = f(i - 1 , j , nums1 , nums2 , dp);
-                int skip2 = f(i , j - 1 , nums1 , nums2 , dp);
-                dp[i - 1][j - 1] = max({take , skip1 , skip2});
+        vector<vector<int>> dp(n + 1  , vector<int>(m + 1 , -1e9));
+        //return f( n  , m  , nums1 , nums2 , dp);
+        for(int i = 1 ; i <= n ; i++){
+            for(int j = 1 ; j <= m ; j++){
+                int take = (nums1[i - 1] * nums2[j - 1]) + max(0 , dp[i - 1][j - 1]);
+                int skip1 = dp[i - 1][j];
+                int skip2 = dp[i][j - 1];
+                dp[i][j] = max({take , skip1 , skip2});
             }
-        }*/
+        }
+        return dp[n][m];
     }
 };
