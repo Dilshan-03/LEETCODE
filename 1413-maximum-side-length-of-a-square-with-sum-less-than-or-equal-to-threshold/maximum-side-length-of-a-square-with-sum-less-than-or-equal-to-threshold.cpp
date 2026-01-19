@@ -13,7 +13,7 @@ public:
            }
        }
        
-       int low = 1 , high = min(n , m) , ans = 0;
+       int low = 1 , high = min(n , m);
        while(low <= high){
            bool find = false;
            int mid = low + (high - low) / 2; 
