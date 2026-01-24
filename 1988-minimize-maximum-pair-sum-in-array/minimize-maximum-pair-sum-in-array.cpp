@@ -6,6 +6,7 @@ public:
         int minMaxSum = 0;
         int l = 0 , r = n - 1;
         while(l < r){
+            //Balancing the weights
             int sum = nums[l] + nums[r];
             minMaxSum = max(minMaxSum , sum);
             l += 1;
