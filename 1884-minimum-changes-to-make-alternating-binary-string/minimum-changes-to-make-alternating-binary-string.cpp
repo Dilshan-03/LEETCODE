@@ -1,27 +1,14 @@
 class Solution {
-private:
-    int minFlip(string& s){
-        int n = s.length();
-        int flipCnt = 0;
-        int last = (s[0] - '0' == 0 )? 0 : 1;
-        for(int i = 1; i < n ; i++){
-            if(last == 0 && s[i] != '1') flipCnt += 1;
-            else if(last == 1 && s[i] != '0') flipCnt += 1;
-            last = !last;
-        }
-        int flipFirst = 1;
-        last = (s[0] - '0' == 0) ? 1 : 0;
-        for(int i = 1; i < n ; i++){
-            if(last == 0 && s[i] != '1') flipFirst += 1;
-            else if(last == 1 && s[i] != '0') flipFirst += 1;
-            last = !last;
-        }
-        return min(flipCnt , flipFirst);
-    }
 public:
     int minOperations(string s) {
-        string t = s;
-        reverse(t.begin() , t.end());
-        return min(minFlip(s) , minFlip(t));
+        int n = s.length();
+        int option1 = 0 , option2 = 0;
+        for(int i = 0 ; i < n ; i++){
+            char expected1 = i % 2 == 0 ? '0' : '1';
+            char expected2 = i % 2 == 0 ? '1' : '0';
+            if(s[i] != expected1) option1 += 1;
+            if(s[i] != expected2) option2 += 1;
+        }
+        return min(option1 , option2);
     }
 };
