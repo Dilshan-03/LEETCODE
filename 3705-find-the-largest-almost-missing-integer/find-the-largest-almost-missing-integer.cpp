@@ -8,7 +8,9 @@ public:
             hashMap[it] += 1;
             maxEl = max(maxEl , it);
         }
+
         if(k == n) return maxEl;
+
         if(k == 1){
             maxEl = -1;
             for(auto it: hashMap){
@@ -16,9 +18,10 @@ public:
             }
             return maxEl;
         }
-        if(hashMap[nums[0]] == 1 && hashMap[nums[n - 1]] == 1 ) return max(nums[0],nums[n-1]);
-        else if(hashMap[nums[0]] == 1) return nums[0];
-        else if(hashMap[nums[n-1]] == 1) return nums[n-1];
-        return -1;
+
+        int ans = -1;
+        if(hashMap[nums[0]] == 1) ans = max(ans , nums[0]);
+        if(hashMap[nums[n-1]] == 1) ans = max(ans , nums[n-1]);
+        return ans;
     }
 };
